@@ -10,7 +10,8 @@ const headerBar = {
   alignItems: 'center',
   backgroundColor: 'white',
   boxShadow: '0 2px 4px rgba(0,0,0, 0.18)',
-  borderTop: '5px solid black'
+  borderTop: '5px solid black',
+  position: 'fixed'
 };
 
 const navBar = {

@@ -9,7 +9,7 @@ const mainContent = {
   backgroundColor: '#FFF',
   maxWidth: '980px',
   width: '100%',
-  margin: '50px auto',
+  margin: '75px auto',
   padding: '10px 25px',
   borderRadius: '5px',
   boxShadow: '0 2px 4px rgba(0,0,0, 0.18)'
@@ -24,7 +24,7 @@ const Index = ({ url, imageData }) => (
           <Image
             cloudName="pnguyen23"
             publicId={image.public_id}
-            width="300"
+            height="400"
             crop="scale"
           />
         </div>
@@ -33,7 +33,6 @@ const Index = ({ url, imageData }) => (
     <style jsx>
       {`
         section div {
-          flex: auto;
           margin: 0.5vw;
         }
       `}
