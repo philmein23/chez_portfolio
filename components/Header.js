@@ -20,18 +20,20 @@ const navBar = {
 };
 
 const mainTitle = {
+  fontFamily: 'Raleway',
   textTransform: 'uppercase',
   fontSize: 25,
   paddingLeft: 10,
   fontWeight: '800',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  color: 'rgb(0, 0, 0)'
 };
 
 const Header = ({ href }) => {
   return (
     <header style={headerBar}>
       <Link href="/">
-        <div style={mainTitle}>IAW Studios/ illa Art Workz</div>
+        <div style={mainTitle}>illa Art Workz Studios</div>
       </Link>
 
       <nav style={navBar}>

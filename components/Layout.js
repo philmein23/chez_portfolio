@@ -33,6 +33,7 @@ const Layout = ({ children, href }) => (
         href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
         rel="stylesheet"
       />
+      <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet"></link>
     </Head>
     <Header href={href} />
     <main style={main}>{children}</main>
@@ -42,7 +43,7 @@ const Layout = ({ children, href }) => (
       {`
         * {
           margin: 0;
-          font-family: 'Roboto Condensed', sans-serif;
+          font-family: 'Roboto Condensed', 'Raleway', sans-serif;
         }
       `}
     </style>

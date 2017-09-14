@@ -1,21 +1,13 @@
 import Layout from '../components/Layout';
-
-const aboutContent = {
-  backgroundColor: '#FFF',
-  maxWidth: 820,
-  width: '100%',
-  margin: '50px auto 0',
-  padding: '10px 15px',
-  borderRadius: '5px',
-  boxShadow: '0 2px 4px rgba(0,0,0, 0.18)'
-};
+import Content from '../components/Content';
 
 const text = {
   textAlign: 'left',
   color: 'rgb(108, 107, 107)',
   fontSize: '16px',
   lineHeight: '1.5em',
-  paddingRight: '10px'
+  paddingRight: '10px',
+  fontFamily: 'Raleway'
 };
 
 const headerTitle = {
@@ -30,7 +22,7 @@ const container = {
 
 export default ({ url }) => (
   <Layout href={url.pathname}>
-    <section style={aboutContent}>
+    <Content>
       <h1 style={headerTitle}>About The Artist</h1>
       <div style={container}>
         <text style={text}>
@@ -57,6 +49,6 @@ export default ({ url }) => (
         </text>
         <img src="../static/chez.jpg" />
       </div>
-    </section>
+    </Content>
   </Layout>
 );

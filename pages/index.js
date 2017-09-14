@@ -1,24 +1,12 @@
 import Layout from '../components/Layout';
+import Content from '../components/Content';
 import fetch from 'isomorphic-unfetch';
 import { Image } from 'cloudinary-react';
-
-const mainContent = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  flexFlow: 'row-wrap',
-  backgroundColor: '#FFF',
-  maxWidth: '980px',
-  width: '100%',
-  margin: '75px auto',
-  padding: '10px 25px',
-  borderRadius: '5px',
-  boxShadow: '0 2px 4px rgba(0,0,0, 0.18)'
-};
 
 const Index = ({ url, imageData }) => (
   <Layout href={url.pathname}>
     {console.log(imageData)}
-    <section style={mainContent}>
+    <Content>
       {imageData.resources.map(image => (
         <div>
           <Image
@@ -29,14 +17,14 @@ const Index = ({ url, imageData }) => (
           />
         </div>
       ))}
-    </section>
+    </Content>
     <style jsx>
-      {`
-        section div {
-          margin: 0.5vw;
-        }
-      `}
-    </style>
+    {`
+      div {
+        margin: 0.2vw;
+      }
+    `}
+  </style>
   </Layout>
 );
 

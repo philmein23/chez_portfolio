@@ -1,24 +1,64 @@
 import Layout from '../components/Layout';
+import Content from '../components/Content';
+import Icon from '../components/Icon';
+import { ICONS } from '../constants/constants';
 
-const contactSection = {
-  backgroundColor: '#FFF',
-  maxWidth: 720,
-  width: '100%',
-  margin: '50px auto 0',
-  padding: '10px 15px',
-  borderRadius: '5px',
-  boxShadow: '0 2px 4px rgba(0,0,0, 0.18)'
+export default ({ url }) => {
+  const text = {
+    fontFamily: 'Raleway'
+  };
+
+  return (
+    <Layout href={url.pathname}>
+      <Content maxWidth={600}>
+        <div className="contactContainer">
+          <text style={text}>
+            Chez is available for special request alongside purchasing
+            his current works of art. Please contact him at his
+            <span>
+              <a href="mailto:iawstudios1199@gmail.com">
+                <span className="email">e-mail</span>
+              </a>
+            </span>
+          </text>
+          <br />
+          <div>
+            <span style={text}>
+              Also, please visit his instagram to see more of his
+              artwork.
+            </span>
+            <span className="instagram-icon">
+              <Icon
+                href={'https://www.instagram.com/iawstudios1199/'}
+                iconName={ICONS.INSTAGRAM}
+              />
+            </span>
+          </div>
+        </div>
+      </Content>
+      <style jsx>
+        {`
+          .contactContainer {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+          }
+
+          .email {
+            margin-left: 5px;
+            font-family: 'Raleway'
+          }
+
+          a:link {
+            text-decoration: none;
+            color: #e17474;
+          }
+
+          .instagram-icon {
+            margin-left: 5px;
+          }
+        `}
+      </style>
+    </Layout>
+  );
 };
-
-export default ({ url }) => (
-  <Layout href={url.pathname}>
-    <section style={contactSection}>
-      Chez is available for special request alongside purchasing his
-      current works of art. <br />Please contact him via
-      <span>
-        <span> </span><a href="mailto:iawstudios1199@gmail.com">e-mail</a>
-      </span>
-      
-    </section>
-  </Layout>
-);
