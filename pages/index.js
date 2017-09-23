@@ -1,32 +1,33 @@
+import React, { Component } from 'react';
 import Layout from '../components/Layout';
 import Content from '../components/Content';
-import fetch from 'isomorphic-unfetch';
-import { Image } from 'cloudinary-react';
+import Modal from '../components/Modal';
 
-const Index = ({ url, imageData }) => (
-  <Layout href={url.pathname}>
-    {console.log(imageData)}
-    <Content>
-      {imageData.resources.map(image => (
-        <div>
-          <Image
-            cloudName="pnguyen23"
-            publicId={image.public_id}
-            height="400"
-            crop="scale"
-          />
-        </div>
-      ))}
-    </Content>
-    <style jsx>
-    {`
-      div {
-        margin: 0.2vw;
-      }
-    `}
-  </style>
-  </Layout>
-);
+import fetch from 'isomorphic-unfetch';
+import Images from '../components/Images';
+import Media from 'react-media';
+
+class Index extends Component {
+  render() {
+    const { url, imageData } = this.props;
+    return (
+      <Layout href={url.pathname}>
+        <Media query="(max-width: 768px)">
+          {matches =>
+            matches ? (
+              <Content maxWidth={500}>
+                <Images imageData={imageData} width={400} />
+              </Content>
+            ) : (
+              <Content>
+                <Images imageData={imageData} width={300} />
+              </Content>
+            )}
+        </Media>
+      </Layout>
+    );
+  }
+}
 
 Index.getInitialProps = async function() {
   const options = {
@@ -35,7 +36,7 @@ Index.getInitialProps = async function() {
   };
 
   const resources = await fetch(
-    'http://res.cloudinary.com/pnguyen23/image/list/chez.json',
+    'https://res.cloudinary.com/pnguyen23/image/list/chez.json',
     options
   );
   const imageData = await resources.json();

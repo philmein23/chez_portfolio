@@ -7,3 +7,8 @@ export const ICONS = {
     'M846.8 238.6c0 33.91-27.49 61.4-61.4 61.4s-61.4-27.49-61.4-61.4c0-33.91 27.49-61.4 61.4-61.4s61.4 27.49 61.4 61.4z'
   ]
 };
+
+export const CLOUDINARY = {
+  CLOUDNAME: 'pnguyen23',
+  CROP_TYPE: 'scale'
+}

@@ -1,8 +1,8 @@
-const Content = ({ children, maxWidth = 980 }) => {
+const Content = ({ children, maxWidth = 900 }) => {
   const mainContent = {
     display: 'flex',
     flexWrap: 'wrap',
-    flexFlow: 'row-wrap',
+    flexFlow: 'row wrap',
     backgroundColor: '#FFF',
     maxWidth: `${maxWidth}px`,
     width: '100%',
@@ -13,7 +13,7 @@ const Content = ({ children, maxWidth = 980 }) => {
   };
 
   return (
-    <section className="gutter" style={mainContent}>
+    <section style={mainContent}>
       {children}
     </section>
   );

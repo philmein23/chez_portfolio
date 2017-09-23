@@ -20,6 +20,12 @@ const container = {
   display: 'flex'
 };
 
+const imgFlex = {
+  maxWidth: '200px',
+  width: '100%',
+  height: 'auto'
+}
+
 export default ({ url }) => (
   <Layout href={url.pathname}>
     <Content>
@@ -47,7 +53,7 @@ export default ({ url }) => (
           He currently is living 45 minutes outside of DC in Ashburn
           with his girlfriend and pup Chalupa Batman.
         </text>
-        <img src="../static/chez.jpg" />
+        <img style={imgFlex} src="../static/chez.jpg" />
       </div>
     </Content>
   </Layout>
