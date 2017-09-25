@@ -21,9 +21,10 @@ const button = {
 class ModalPanel extends Component {
   render() {
     const { display } = this.props;
+    console.log(display)
     const overlay = (
       <div style={overlayStyle}>
-        <button style={button} onClick={this.closeModal}>
+        <button style={button} onClick={this.props.closeModal}>
           X
         </button>
       </div>
@@ -44,7 +45,7 @@ class Modal extends Component {
     let modalPanel = null;
     if (activeIndex === selectedIndex) {
       modalPanel = (
-        <ModalPanel display={display} closeModal={closeModal} />
+        <ModalPanel display={this.props.display} closeModal={this.props.closeModal} />
       );
     }
 

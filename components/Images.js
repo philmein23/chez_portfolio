@@ -22,10 +22,9 @@ class Images extends Component {
     this.setState(() => {
       return { display: false };
     });
-  };
-
+  }
+   
   render() {
-    const { display, activeIndex } = this.state;
     const { imageData, width } = this.props;
     return (
       <div>
@@ -36,8 +35,8 @@ class Images extends Component {
           >
             <Modal
               closeModal={this.closeModal}
-              display={display}
-              activeIndex={activeIndex}
+              display={this.state.display}
+              activeIndex={this.state.activeIndex}
               selectedIndex={index}
             >
               <Image

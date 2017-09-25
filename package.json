@@ -20,6 +20,7 @@
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "react-media": "^1.6.1"
   }
 }
