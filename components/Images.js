@@ -21,6 +21,10 @@ class Images extends Component {
   };
 
   render() {
+    const imageLink = {
+      cursor: 'pointer'
+    }
+
     const { imageData, width } = this.props;
     return (
       <div>
@@ -32,10 +36,16 @@ class Images extends Component {
         />
         {imageData.resources.map((image, index) => (
           <a
+            style={imageLink}
             key={image.public_id}
             onClick={() => this.handleModalDisplay(image)}
           >
-            {() => console.log('hello world')}
+          <style jsx>{`
+            a:hover {
+              opacity: 0.5;
+            }
+          `}
+          </style>
             <Image
               cloudName={CLOUDINARY.CLOUDNAME}
               publicId={image.public_id}
