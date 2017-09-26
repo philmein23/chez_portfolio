@@ -6,46 +6,42 @@ import Modal from '../components/Modal';
 class Images extends Component {
   state = {
     display: false,
-    activeIndex: 0
+    selectedImage: null
   };
 
-  handleModalDisplay = activeIndex => {
-    this.setState(() => {
-      return {
-        activeIndex,
-        display: true
-      };
+  handleModalDisplay = selectedImage => {
+    this.setState({
+      selectedImage,
+      display: true
     });
   };
 
   closeModal = () => {
-    this.setState(() => {
-      return { display: false };
-    });
-  }
-   
+    this.setState({ display: false });
+  };
+
   render() {
     const { imageData, width } = this.props;
     return (
       <div>
+        <Modal
+          width={500}
+          closeModal={this.closeModal}
+          display={this.state.display}
+          selectedImage={this.state.selectedImage}
+        />
         {imageData.resources.map((image, index) => (
           <a
-            key={index}
-            onClick={() => this.handleModalDisplay(index)}
+            key={image.public_id}
+            onClick={() => this.handleModalDisplay(image)}
           >
-            <Modal
-              closeModal={this.closeModal}
-              display={this.state.display}
-              activeIndex={this.state.activeIndex}
-              selectedIndex={index}
-            >
-              <Image
-                cloudName={CLOUDINARY.CLOUDNAME}
-                publicId={image.public_id}
-                width={width}
-                crop={CLOUDINARY.CROP_TYPE}
-              />
-            </Modal>
+            {() => console.log('hello world')}
+            <Image
+              cloudName={CLOUDINARY.CLOUDNAME}
+              publicId={image.public_id}
+              width={width}
+              crop={CLOUDINARY.CROP_TYPE}
+            />
           </a>
         ))}
       </div>

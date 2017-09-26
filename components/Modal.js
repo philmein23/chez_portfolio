@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Image } from 'cloudinary-react';
+import { CLOUDINARY } from '../constants/constants';
 
 const overlayStyle = {
   position: 'fixed',
   zIndex: '1',
-  paddingTop: '100px',
+  paddingTop: '10px',
   left: '0',
   top: '0',
   width: '100%',
@@ -13,48 +15,57 @@ const overlayStyle = {
 };
 
 const button = {
-  borderRadius: '5px',
-  backgroundColor: '#FFF',
-  zIndex: '10'
+  fontSize: '40px',
+  fontWeight: 'bold',
+  transition: '0.3s',
+  backgroundColor: 'rgba(0,0,0,0.9)',
+  color: '#f1f1f1',
+  marginRight: '20px',
+  cursor: 'pointer'
 };
 
-class ModalPanel extends Component {
-  render() {
-    const { display } = this.props;
-    console.log(display)
-    const overlay = (
-      <div style={overlayStyle}>
-        <button style={button} onClick={this.props.closeModal}>
-          X
-        </button>
-      </div>
-    );
-    return <div>{display ? overlay : null}</div>;
-  }
+const buttonAlignment = {
+  display: 'flex',
+  justifyContent: 'flex-end',
+  width: '100%'
 }
+
+const modalLayout = {
+  display: 'flex',
+  width: '100%',
+  flexDirection: 'column',
+  alignItems: 'center'
+};
+
 
 class Modal extends Component {
   render() {
-    const {
-      activeIndex,
-      children,
-      selectedIndex,
-      display,
-      closeModal
-    } = this.props;
-    let modalPanel = null;
-    if (activeIndex === selectedIndex) {
-      modalPanel = (
-        <ModalPanel display={this.props.display} closeModal={this.props.closeModal} />
-      );
-    }
+    const { selectedImage, display, closeModal, width } = this.props;
+    const overlayContent = () => {
+      if (!selectedImage) return null;
+      return (
+        <div style={modalLayout}>
+          <div style={buttonAlignment}>
+            <span style={button} onClick={closeModal}>
+              X
+            </span>
+          </div>
 
-    return (
-      <div>
-        {modalPanel}
-        {children}
-      </div>
+          <Image
+            cloudName={CLOUDINARY.CLOUDNAME}
+            publicId={selectedImage.public_id}
+            width={width}
+            crop={CLOUDINARY.CROP_TYPE}
+          />
+        </div>
+      );
+    };
+
+    const overlay = (
+      <div style={overlayStyle}>{overlayContent()}</div>
     );
+
+    return <div>{display ? overlay : null}</div>;
   }
 }
 
