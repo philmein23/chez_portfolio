@@ -1,22 +1,29 @@
-const Content = ({ children, maxWidth = 900 }) => {
-  const mainContent = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexFlow: 'row wrap',
-    backgroundColor: '#FFF',
-    maxWidth: `${maxWidth}px`,
-    width: '100%',
-    margin: '75px auto',
-    padding: '10px 15px',
-    borderRadius: '5px',
-    boxShadow: '0 2px 4px rgba(0,0,0, 0.18)'
-  };
+import React, { Component } from 'react';
 
-  return (
-    <section style={mainContent}>
-      {children}
-    </section>
-  );
-};
+export default class Content extends Component {
+  render() {
+    const { children, maxWidth = 950 } = this.props;
 
-export default Content;
+    return (
+      <section style={{ maxWidth }}>
+        {children}
+
+        <style jsx>
+          {`
+            section {
+              display: flex;
+              flex-wrap: wrap;
+              flex-flow: row wrap;
+              background-color: #fff;
+              width: 100%;
+              margin: 75px auto;
+              padding: 10px 15px;
+              border-radius: 5px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+            }
+          `}
+        </style>
+      </section>
+    );
+  }
+}

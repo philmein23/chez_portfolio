@@ -48,6 +48,8 @@ var _Modal = require('../components/Modal');
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
+var _constants = require('../constants/constants');
+
 var _isomorphicUnfetch = require('isomorphic-unfetch');
 
 var _isomorphicUnfetch2 = _interopRequireDefault(_isomorphicUnfetch);
@@ -83,69 +85,78 @@ var Index = function (_Component) {
 
       return _react2.default.createElement(_Layout2.default, { href: url.pathname, __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 29
         }
       }, _react2.default.createElement(_reactMedia2.default, { query: '(max-width: 768px)', __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 30
         }
       }, function (matches) {
-        return matches ? _react2.default.createElement(_Content2.default, { maxWidth: 500, __source: {
+        return matches ? _react2.default.createElement(_Content2.default, { maxWidth: 450, justifyContent: 'center', __source: {
             fileName: _jsxFileName,
-            lineNumber: 18
+            lineNumber: 33
           }
         }, _react2.default.createElement(_Images2.default, { imageData: imageData, width: 400, __source: {
             fileName: _jsxFileName,
-            lineNumber: 19
+            lineNumber: 34
           }
         })) : _react2.default.createElement(_Content2.default, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 22
+            lineNumber: 37
           }
         }, _react2.default.createElement(_Images2.default, { imageData: imageData, width: 300, __source: {
             fileName: _jsxFileName,
-            lineNumber: 23
+            lineNumber: 38
           }
         }));
       }));
     }
+  }], [{
+    key: 'getInitialProps',
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var options, resources, imageData;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                options = {
+                  method: 'GET',
+                  mode: 'cors'
+                };
+                _context.next = 3;
+                return (0, _isomorphicUnfetch2.default)((0, _constants.CLOUDINARY)('chez').URL, options);
+
+              case 3:
+                resources = _context.sent;
+                _context.next = 6;
+                return resources.json();
+
+              case 6:
+                imageData = _context.sent;
+                return _context.abrupt('return', {
+                  imageData: imageData
+                });
+
+              case 8:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getInitialProps() {
+        return _ref.apply(this, arguments);
+      }
+
+      return getInitialProps;
+    }()
   }]);
 
   return Index;
 }(_react.Component);
 
-Index.getInitialProps = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-  var options, resources, imageData;
-  return _regenerator2.default.wrap(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          options = {
-            method: 'GET',
-            mode: 'cors'
-          };
-          _context.next = 3;
-          return (0, _isomorphicUnfetch2.default)('https://res.cloudinary.com/pnguyen23/image/list/chez.json', options);
-
-        case 3:
-          resources = _context.sent;
-          _context.next = 6;
-          return resources.json();
-
-        case 6:
-          imageData = _context.sent;
-          return _context.abrupt('return', {
-            imageData: imageData
-          });
-
-        case 8:
-        case 'end':
-          return _context.stop();
-      }
-    }
-  }, _callee, this);
-}));
-
 exports.default = Index;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbIlJlYWN0IiwiQ29tcG9uZW50IiwiTGF5b3V0IiwiQ29udGVudCIsIk1vZGFsIiwiZmV0Y2giLCJJbWFnZXMiLCJNZWRpYSIsIkluZGV4IiwicHJvcHMiLCJ1cmwiLCJpbWFnZURhdGEiLCJwYXRobmFtZSIsIm1hdGNoZXMiLCJnZXRJbml0aWFsUHJvcHMiLCJvcHRpb25zIiwibWV0aG9kIiwibW9kZSIsInJlc291cmNlcyIsImpzb24iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxBQUFPLEFBQVM7Ozs7QUFDaEIsQUFBTzs7OztBQUNQLEFBQU87Ozs7QUFDUCxBQUFPOzs7O0FBRVAsQUFBTzs7OztBQUNQLEFBQU87Ozs7QUFDUCxBQUFPOzs7Ozs7Ozs7SUFFRCxBOzs7Ozs7Ozs7Ozs2QkFDSzttQkFDb0IsS0FEcEIsQUFDeUI7VUFEekIsQUFDQyxhQURELEFBQ0M7VUFERCxBQUNNLG1CQUROLEFBQ00sQUFDYjs7NkJBQ0UsQUFBQyxrQ0FBTyxNQUFNLElBQWQsQUFBa0I7b0JBQWxCO3NCQUFBLEFBQ0U7QUFERjtPQUFBLGtCQUNFLEFBQUMsc0NBQU0sT0FBUCxBQUFhO29CQUFiO3NCQUFBLEFBQ0c7QUFESDs0QkFDRzt5Q0FFRyxBQUFDLG1DQUFRLFVBQVQsQUFBbUI7c0JBQW5CO3dCQUFBLEFBQ0U7QUFERjtTQUFBLGtCQUNFLEFBQUMsa0NBQU8sV0FBUixBQUFtQixXQUFXLE9BQTlCLEFBQXFDO3NCQUFyQzt3QkFGSixBQUNFLEFBQ0U7QUFBQTtXQUZKLG1CQUtFLEFBQUM7O3NCQUFEO3dCQUFBLEFBQ0U7QUFERjtBQUFBLFNBQUEsa0JBQ0UsQUFBQyxrQ0FBTyxXQUFSLEFBQW1CLFdBQVcsT0FBOUIsQUFBcUM7c0JBQXJDO3dCQVBMLEFBTUcsQUFDRTtBQUFBOztBQVZaLEFBQ0UsQUFDRSxBQWNMOzs7OztBQW5CaUIsQTs7QUFzQnBCLE1BQUEsQUFBTSwyRkFBa0IsbUJBQUE7MEJBQUE7Z0VBQUE7Y0FBQTt1Q0FBQTthQUNoQjtBQURnQjtvQkFDTixBQUNOLEFBQ1I7a0JBSG9CLEFBQ04sQUFFUjtBQUZRLEFBQ2Q7MEJBRm9CO2lCQU1FLGlDQUFBLEFBQ3RCLDZEQVBvQixBQU1FLEFBRXRCOzthQUZJO0FBTmdCLCtCQUFBOzBCQUFBO2lCQVVFLFVBVkYsQUFVRSxBQUFVOzthQUE1QjtBQVZnQiwrQkFBQTs7dUJBQUEsQUFZZjtBQUFBLEFBQ0w7O2FBYm9CO2FBQUE7MEJBQUE7O0FBQUE7Y0FBQTtBQUF4QixBQWlCQTs7a0JBQUEsQUFBZSIsImZpbGUiOiJpbmRleC5qcz9lbnRyeSIsInNvdXJjZVJvb3QiOiIvVXNlcnMvcGhpbG5ndXllbi9EZXNrdG9wL1Byb2plY3RzL25leHQvY2hlel9wb3J0Zm9saW8ifQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbIlJlYWN0IiwiQ29tcG9uZW50IiwiTGF5b3V0IiwiQ29udGVudCIsIk1vZGFsIiwiQ0xPVURJTkFSWSIsImZldGNoIiwiSW1hZ2VzIiwiTWVkaWEiLCJJbmRleCIsInByb3BzIiwidXJsIiwiaW1hZ2VEYXRhIiwicGF0aG5hbWUiLCJtYXRjaGVzIiwib3B0aW9ucyIsIm1ldGhvZCIsIm1vZGUiLCJVUkwiLCJyZXNvdXJjZXMiLCJqc29uIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsQUFBTyxBQUFTOzs7O0FBQ2hCLEFBQU87Ozs7QUFDUCxBQUFPOzs7O0FBQ1AsQUFBTzs7OztBQUNQLEFBQVM7O0FBRVQsQUFBTzs7OztBQUNQLEFBQU87Ozs7QUFDUCxBQUFPOzs7Ozs7Ozs7SSxBQUVjOzs7Ozs7Ozs7Ozs2QkFlVjttQkFDb0IsS0FEcEIsQUFDeUI7VUFEekIsQUFDQyxhQURELEFBQ0M7VUFERCxBQUNNLG1CQUROLEFBQ00sQUFDYjs7NkJBQ0UsQUFBQyxrQ0FBTyxNQUFNLElBQWQsQUFBa0I7b0JBQWxCO3NCQUFBLEFBQ0U7QUFERjtPQUFBLGtCQUNFLEFBQUMsc0NBQU0sT0FBUCxBQUFhO29CQUFiO3NCQUFBLEFBQ0c7QUFESDs0QkFDRzt5Q0FFRyxBQUFDLG1DQUFRLFVBQVQsQUFBbUIsS0FBSyxnQkFBeEIsQUFBd0M7c0JBQXhDO3dCQUFBLEFBQ0U7QUFERjtTQUFBLGtCQUNFLEFBQUMsa0NBQU8sV0FBUixBQUFtQixXQUFXLE9BQTlCLEFBQXFDO3NCQUFyQzt3QkFGSixBQUNFLEFBQ0U7QUFBQTtXQUZKLG1CQUtFLEFBQUM7O3NCQUFEO3dCQUFBLEFBQ0U7QUFERjtBQUFBLFNBQUEsa0JBQ0UsQUFBQyxrQ0FBTyxXQUFSLEFBQW1CLFdBQVcsT0FBOUIsQUFBcUM7c0JBQXJDO3dCQVBMLEFBTUcsQUFDRTtBQUFBOztBQVZaLEFBQ0UsQUFDRSxBQWNMOzs7Ozs7Ozs7O21CQS9CTztBOzBCQUFVLEFBQ04sQUFDUjt3QkFGYyxBQUVSLEE7QUFGUSxBQUNkOzt1QkFJc0IsaUNBQU0sMkJBQUEsQUFBVyxRQUFqQixBQUF5QixLQUFLLEEsQUFBOUI7O21CQUFsQjtBOzt1QkFDa0IsVUFBQSxBQUFVLEE7O21CQUE1QjtBOzs2QkFFQyxBO0FBQUEsQUFDTDs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQVg2QixBOztrQkFBZCxBIiwiZmlsZSI6ImluZGV4LmpzP2VudHJ5Iiwic291cmNlUm9vdCI6Ii9Vc2Vycy9waGlsbmd1eWVuL0Rlc2t0b3AvUHJvamVjdHMvbmV4dC9jaGV6X3BvcnRmb2xpbyJ9

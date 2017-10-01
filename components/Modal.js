@@ -4,21 +4,20 @@ import { CLOUDINARY } from '../constants/constants';
 
 const overlayStyle = {
   position: 'fixed',
-  zIndex: '1',
+  zIndex: '9000',
   paddingTop: '10px',
   left: '0',
   top: '0',
   width: '100%',
   height: '100%',
   overflow: 'auto',
-  backgroundColor: 'rgba(0,0,0,0.9)'
+  backgroundColor: 'rgba(0,0,0,0.8)'
 };
 
 const button = {
   fontSize: '40px',
   fontWeight: 'bold',
   transition: '0.3s',
-  backgroundColor: 'rgba(0,0,0,0.9)',
   color: '#f1f1f1',
   marginRight: '20px',
   cursor: 'pointer'
@@ -28,7 +27,7 @@ const buttonAlignment = {
   display: 'flex',
   justifyContent: 'flex-end',
   width: '100%'
-}
+};
 
 const modalLayout = {
   display: 'flex',
@@ -36,7 +35,6 @@ const modalLayout = {
   flexDirection: 'column',
   alignItems: 'center'
 };
-
 
 class Modal extends Component {
   render() {
@@ -51,12 +49,19 @@ class Modal extends Component {
             </span>
           </div>
 
-          <Image
-            cloudName={CLOUDINARY.CLOUDNAME}
-            publicId={selectedImage.public_id}
-            width={width}
-            crop={CLOUDINARY.CROP_TYPE}
-          />
+          <div className="imageBorder">
+            <Image
+              cloudName={CLOUDINARY().CLOUDNAME}
+              publicId={selectedImage.public_id}
+              width={width}
+              crop={CLOUDINARY().CROP_TYPE}
+            />
+          </div>
+          <style jsx>{`
+            .imageBorder {
+              border: 10px solid #fff;
+            }
+          `}</style>
         </div>
       );
     };

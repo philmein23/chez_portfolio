@@ -23,7 +23,7 @@ class Images extends Component {
   render() {
     const imageLink = {
       cursor: 'pointer'
-    }
+    };
 
     const { imageData, width } = this.props;
     return (
@@ -40,18 +40,23 @@ class Images extends Component {
             key={image.public_id}
             onClick={() => this.handleModalDisplay(image)}
           >
-          <style jsx>{`
-            a:hover {
-              opacity: 0.5;
-            }
-          `}
-          </style>
             <Image
-              cloudName={CLOUDINARY.CLOUDNAME}
+              cloudName={CLOUDINARY().CLOUDNAME}
               publicId={image.public_id}
               width={width}
-              crop={CLOUDINARY.CROP_TYPE}
+              crop={CLOUDINARY().CROP_TYPE}
             />
+            <style jsx>
+              {`
+                a:hover {
+                  opacity: 0.6;
+                }
+
+                a {
+                  margin: 2px;
+                }
+              `}
+            </style>
           </a>
         ))}
       </div>
