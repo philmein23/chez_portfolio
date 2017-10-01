@@ -27,11 +27,11 @@ export default class Index extends Component {
     const { url, imageData } = this.props;
     return (
       <Layout href={url.pathname}>
-        <Media query="(max-width: 768px)">
+        <Media query="(max-width: 575px)">
           {matches =>
             matches ? (
-              <Content maxWidth={450} justifyContent={'center'}>
-                <Images imageData={imageData} width={400} />
+              <Content maxWidth={450} margin={'120px auto'} >
+                <Images imageData={imageData} width={400}/>
               </Content>
             ) : (
               <Content>

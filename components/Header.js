@@ -4,25 +4,6 @@ import Link from 'next/link';
 import ActiveLink from './ActiveLink';
 import Router from 'next/router';
 
-import Media from 'react-media';
-
-const headerBar = {
-  display: 'flex',
-  width: '100%',
-  justifyContent: 'space-between',
-  height: 50,
-  alignItems: 'center',
-  backgroundColor: 'white',
-  boxShadow: '0 2px 4px rgba(0,0,0, 0.18)',
-  borderTop: '5px solid black',
-  position: 'fixed'
-};
-
-const navBar = {
-  display: 'flex',
-  height: 50
-};
-
 const mainTitle = {
   fontFamily: 'Raleway',
   textTransform: 'uppercase',
@@ -35,7 +16,10 @@ const mainTitle = {
 
 export default class Header extends Component {
   render() {
-    const { href } = this.props;
+    const { href, flexDirection = '', height = 50 } = this.props;
+
+    const navBar = ( height ) => ({ height });
+    const headerBar = ( flexDirection, height ) => ({ flexDirection, height });
 
     const navigationBar = () => {
       return [
@@ -46,12 +30,13 @@ export default class Header extends Component {
     };
 
     return (
-      <header style={headerBar}>
+      <header style={headerBar( flexDirection, height )}>
         <Link href="/">
           <div style={mainTitle}>illa Art Workz Studios</div>
         </Link>
 
-        <nav style={navBar}>{navigationBar()}</nav>
+        <nav style={navBar( height )}>{navigationBar()}</nav>
+
         <style jsx global>
           {`
             nav > li {
@@ -61,7 +46,19 @@ export default class Header extends Component {
               align-items: center;
             }
 
+            nav {
+              display: flex;
+            }
+
             header {
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+              align-items: center;
+              background-color: #fff;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+              border-top: 5px solid black;
+              position: fixed;
               z-index: 1000;
             }
           `}

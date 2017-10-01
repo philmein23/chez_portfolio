@@ -1,6 +1,8 @@
 import Header from './Header';
 import Head from 'next/head';
 
+import Media from 'react-media';
+
 const layout = {
   width: '100%',
   margin: 0,
@@ -13,7 +15,7 @@ const layout = {
 
 const main = {
   flex: '1'
-}
+};
 
 const footer = {
   height: 50,
@@ -33,9 +35,17 @@ const Layout = ({ children, href }) => (
         href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
         rel="stylesheet"
       />
-      <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet"></link>
+      <link
+        href="https://fonts.googleapis.com/css?family=Raleway:400,700"
+        rel="stylesheet"
+      />
     </Head>
-    <Header href={href} />
+
+    <Media query="(max-width: 575px)">
+      {matches =>
+        matches ? <Header href={href} flexDirection={'column'} height={80}/> : <Header href={href} />}
+    </Media>
+
     <main style={main}>{children}</main>
 
     <footer style={footer} />
