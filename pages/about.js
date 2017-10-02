@@ -96,7 +96,7 @@ export default class About extends Component {
               matches ? (
                 <Content
                   margin={'120px auto'}
-                  maxWidth={380}
+                  maxWidth={300}
                   justifyContent={'center'}
                 >
                   <h1 style={headerTitle('center', '30px')}>

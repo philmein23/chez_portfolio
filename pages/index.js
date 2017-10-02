@@ -25,20 +25,27 @@ export default class Index extends Component {
 
   render() {
     const { url, imageData } = this.props;
+
+    const belowMaxWidth = () => {
+      return (
+        <Content maxWidth={300} margin={'120px auto'}>
+          <Images imageData={imageData} width={300} />
+        </Content>
+      );
+    };
+
+    const aboveMaxWidth = () => {
+      return (
+        <Content>
+          <Images imageData={imageData} width={200} />
+        </Content>
+      );
+    };
+
     return (
       <Layout href={url.pathname}>
-        <Media query="(max-width: 575px)">
-          {matches =>
-            matches ? (
-              <Content maxWidth={450} margin={'120px auto'} >
-                <Images imageData={imageData} width={400}/>
-              </Content>
-            ) : (
-              <Content>
-                <Images imageData={imageData} width={300} />
-              </Content>
-            )}
-        </Media>
+        <Media query="(max-width: 575px)" render={belowMaxWidth} />
+        <Media query="(min-width: 574px)" render={aboveMaxWidth} />
       </Layout>
     );
   }
