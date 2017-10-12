@@ -43,7 +43,11 @@ const Layout = ({ children, href }) => (
 
     <Media query="(max-width: 575px)">
       {matches =>
-        matches ? <Header href={href} flexDirection={'column'} height={80}/> : <Header href={href} />}
+        matches ? (
+          <Header href={href} flexDirection={'column'} height={80} />
+        ) : (
+          <Header href={href} />
+        )}
     </Media>
 
     <main style={main}>{children}</main>
