@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 
 export default class Content extends Component {
   render() {
-    const { children, maxWidth = 950, margin = '75px auto', justifyContent = '' } = this.props;
+    const {
+      children,
+      maxWidth,
+      margin   = '75px auto',
+      justifyContent = ''
+    } = this.props;
 
     return (
       <section style={{ maxWidth, margin, justifyContent }}>

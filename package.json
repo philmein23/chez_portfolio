@@ -15,13 +15,14 @@
     "cloudinary-react": "^1.0.4",
     "express": "^4.15.4",
     "isomorphic-unfetch": "^2.0.0",
-    "next": "^4.0.1",
+    "next": "^4.1.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "redbox-react": "^1.5.0"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "react-headroom": "^2.2.2",
     "react-media": "^1.6.1"
   }
 }

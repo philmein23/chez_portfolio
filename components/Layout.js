@@ -1,5 +1,7 @@
+import React, { Component } from 'react';
 import Header from './Header';
 import Head from 'next/head';
+import Headroom from 'react-headroom';
 
 import Media from 'react-media';
 
@@ -23,45 +25,86 @@ const footer = {
   boxShadow: '0 -1px 4px rgba(0,0,0, 0.18)'
 };
 
-const Layout = ({ children, href }) => (
-  <div style={layout}>
-    <Head>
-      <title>Welcome to My Porfolio</title>
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=Raleway:400,700"
-        rel="stylesheet"
-      />
-    </Head>
+export default class Layout extends Component {
+  mediaQueryList = null;
 
-    <Media query="(max-width: 575px)">
-      {matches =>
-        matches ? (
-          <Header href={href} flexDirection={'column'} height={80} />
-        ) : (
-          <Header href={href} />
-        )}
-    </Media>
+  state = {
+    flexDirection: '',
+    height: 50
+  };
 
-    <main style={main}>{children}</main>
+  setMediaUpdate = () => {
+    this.mediaQueryList = window.matchMedia('(min-width: 576px)');
 
-    <footer style={footer} />
-    <style jsx global>
-      {`
-        * {
-          margin: 0;
-          font-family: 'Roboto Condensed', 'Raleway', sans-serif;
-        }
-      `}
-    </style>
-  </div>
-);
+    this.mediaQueryList.addListener(this.updateHeaderSettings);
+  };
 
-export default Layout;
+  updateHeaderSettings = e => {
+    if (e.matches) {
+      this.setState({
+        flexDirection: '',
+        height: 50
+      });
+    } else {
+      this.setState({
+        flexDirection: 'column',
+        height: 80
+      });
+    }
+  };
+
+  componentDidMount() {
+    this.setMediaUpdate();
+
+    this.mediaQueryList.matches
+      ? this.setState({ height: 50, flexDirection: '' })
+      : this.setState({ height: 80, flexDirection: 'column' });
+  }
+
+  render() {
+    const { children, href } = this.props;
+    console.log(this.props);
+    const { flexDirection, height } = this.state;
+
+    return (
+      <div style={layout}>
+        <Head>
+          <title>Welcome to My Porfolio</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+          />
+
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Raleway:400,700"
+            rel="stylesheet"
+          />
+        </Head>
+
+        <Headroom style={{ transition: 'all .5s ease-in-out' }}>
+          <Header
+            href={href}
+            flexDirection={flexDirection}
+            height={height}
+          />
+        </Headroom>
+
+        <main style={main}>{children}</main>
+
+        <footer style={footer} />
+        <style jsx global>
+          {`
+            * {
+              margin: 0;
+              font-family: 'Roboto Condensed', 'Raleway', sans-serif;
+            }
+          `}
+        </style>
+      </div>
+    );
+  }
+}

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+
 import Layout from '../components/Layout';
 import Content from '../components/Content';
-import Modal from '../components/Modal';
 import { CLOUDINARY } from '../constants/constants';
 
 import fetch from 'isomorphic-unfetch';
 import Images from '../components/Images';
-import Media from 'react-media';
 
 export default class Index extends Component {
   static async getInitialProps() {
@@ -23,29 +22,52 @@ export default class Index extends Component {
     };
   }
 
+  state = {
+    width: 200,
+    contentMaxWidth: '950px'
+  };
+
+  setMediaUpdate = () => {
+    this.mediaQueryList = window.matchMedia('(min-width: 576px)');
+
+    this.mediaQueryList.addListener(this.updateWidth);
+  };
+
+  updateWidth = e => {
+    if (e.matches) {
+      this.setState({
+        width: 200,
+        contentMaxWidth: '950px'
+      });
+    } else {
+      this.setState({
+        width: 300,
+        contentMaxWidth: '350px'
+      });
+    }
+  };
+
+  componentWillUnmount() {
+    this.mediaQueryList.removeListener(this.updateWidth);
+  }
+
+  componentDidMount() {
+    this.setMediaUpdate();
+
+    this.mediaQueryList.matches
+      ? this.setState({ width: 200, contentMaxWidth: '950px' })
+      : this.setState({ width: 300, contentMaxWidth: '350px' });
+  }
+
   render() {
     const { url, imageData } = this.props;
-
-    const belowMaxWidth = () => {
-      return (
-        <Content maxWidth={300} margin={'120px auto'}>
-          <Images imageData={imageData} width={300} />
-        </Content>
-      );
-    };
-
-    const aboveMaxWidth = () => {
-      return (
-        <Content>
-          <Images imageData={imageData} width={200} />
-        </Content>
-      );
-    };
-
+    const { width, contentMaxWidth } = this.state;
+    console.log(imageData)
     return (
       <Layout href={url.pathname}>
-        <Media query="(max-width: 575px)" render={belowMaxWidth} />
-        <Media query="(min-width: 574px)" render={aboveMaxWidth} />
+        <Content maxWidth={contentMaxWidth}>
+          <Images imageData={imageData} width={width} />
+        </Content>
       </Layout>
     );
   }

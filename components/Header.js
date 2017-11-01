@@ -18,8 +18,11 @@ export default class Header extends Component {
   render() {
     const { href, flexDirection = '', height = 50 } = this.props;
 
-    const navBar = ( height ) => ({ height });
-    const headerBar = ( flexDirection, height ) => ({ flexDirection, height });
+    const navBar = height => ({ height });
+    const headerBar = (flexDirection, height) => ({
+      flexDirection,
+      height
+    });
 
     const navigationBar = () => {
       return [
@@ -30,12 +33,12 @@ export default class Header extends Component {
     };
 
     return (
-      <header style={headerBar( flexDirection, height )}>
+      <header style={headerBar(flexDirection, height)}>
         <Link href="/">
           <div style={mainTitle}>illa Art Workz Studios</div>
         </Link>
 
-        <nav style={navBar( height )}>{navigationBar()}</nav>
+        <nav style={navBar(height)}>{navigationBar()}</nav>
 
         <style jsx global>
           {`
@@ -58,7 +61,6 @@ export default class Header extends Component {
               background-color: #fff;
               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
               border-top: 5px solid black;
-              position: fixed;
               z-index: 1000;
             }
           `}

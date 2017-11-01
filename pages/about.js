@@ -10,7 +10,7 @@ import { CLOUDINARY } from '../constants/constants';
 const AboutContainer = ({
   publicId,
   flexDirection = '',
-  alignItems = '',
+  alignItems    = '',
   marginTop = ''
 }) => {
   return (
