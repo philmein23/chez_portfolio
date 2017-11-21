@@ -16,3 +16,8 @@ export function CLOUDINARY(tagName = null) {
     URL: `https://res.cloudinary.com/pnguyen23/image/list/${tagName}.json`
   };
 }
+
+export const CLOUDINARY_TAGS = {
+  mainTag: 'chez',
+  profileTag: 'profile_pic'
+}

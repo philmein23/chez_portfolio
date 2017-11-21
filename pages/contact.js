@@ -1,7 +1,10 @@
+import React, { Component } from 'react';
+
 import Layout from '../components/Layout';
-import Content from '../components/Content';
 import Icon from '../components/Icon';
 import { ICONS } from '../constants/constants';
+
+
 
 export default ({ url }) => {
   const text = {
@@ -9,33 +12,35 @@ export default ({ url }) => {
   };
 
   return (
-    <Layout href={url.pathname}>
-      <Content maxWidth={600}>
+    <Layout 
+      href={url.pathname}
+      render={() => (
         <div className="contactContainer">
-          <text style={text}>
-            Chez is available for special request alongside purchasing
-            his current works of art. Please contact him at his
-            <span>
-              <a href="mailto:iawstudios1199@gmail.com">
-                <span className="email">e-mail</span>
-              </a>
-            </span>
-          </text>
-          <br />
-          <div>
-            <span style={text}>
-              Also, please visit his instagram to see more of his
-              artwork.
-            </span>
-            <span className="instagram-icon">
-              <Icon
-                href={'https://www.instagram.com/iawstudios1199/'}
-                iconName={ICONS.INSTAGRAM}
-              />
-            </span>
-          </div>
+        <text style={text}>
+          Chez is available for special request alongside purchasing
+          his current works of art. Please contact him at his
+          <span>
+            <a href="mailto:iawstudios1199@gmail.com">
+              <span className="email">e-mail</span>
+            </a>
+          </span>
+        </text>
+        <br />
+        <div>
+          <span style={text}>
+            Also, please visit his instagram to see more of his
+            artwork.
+          </span>
+          <span className="instagram-icon">
+            <Icon
+              href={'https://www.instagram.com/iawstudios1199/'}
+              iconName={ICONS.INSTAGRAM}
+            />
+          </span>
         </div>
-      </Content>
+      </div>
+      )}>
+
       <style jsx>
         {`
           .contactContainer {

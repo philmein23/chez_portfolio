@@ -19,6 +19,7 @@ const main = {
   flex: '1'
 };
 
+
 const footer = {
   height: 50,
   backgroundColor: 'white',
@@ -30,7 +31,11 @@ export default class Layout extends Component {
 
   state = {
     flexDirection: '',
-    height: 50
+    height: 50,
+    maxWidth: '950px',
+    imageWidth: 200,
+    margin: '40px auto',
+    justifyContent: ''
   };
 
   setMediaUpdate = () => {
@@ -43,12 +48,16 @@ export default class Layout extends Component {
     if (e.matches) {
       this.setState({
         flexDirection: '',
-        height: 50
+        height: 50,
+        maxWidth: '950px',
+        imageWidth: 200
       });
     } else {
       this.setState({
         flexDirection: 'column',
-        height: 80
+        height: 80,
+        maxWidth: '350px',
+        imageWidth: 300
       });
     }
   };
@@ -57,14 +66,13 @@ export default class Layout extends Component {
     this.setMediaUpdate();
 
     this.mediaQueryList.matches
-      ? this.setState({ height: 50, flexDirection: '' })
-      : this.setState({ height: 80, flexDirection: 'column' });
+      ? this.setState({ height: 50, flexDirection: '', maxWidth: '950px', imageWidth: 200 })
+      : this.setState({ height: 80, flexDirection: 'column', maxWidth: '350px', imageWidth: 300 });
   }
 
   render() {
-    const { children, href } = this.props;
-    console.log(this.props);
-    const { flexDirection, height } = this.state;
+    const { href } = this.props;
+    const { flexDirection, height, maxWidth, imageWidth, margin, justifyContent } = this.state;
 
     return (
       <div style={layout}>
@@ -93,7 +101,11 @@ export default class Layout extends Component {
           />
         </Headroom>
 
-        <main style={main}>{children}</main>
+        <main style={main}>
+          <section>
+            {this.props.render({ flexDirection, height, maxWidth, imageWidth })}
+          </section>
+        </main>
 
         <footer style={footer} />
         <style jsx global>
@@ -101,6 +113,20 @@ export default class Layout extends Component {
             * {
               margin: 0;
               font-family: 'Roboto Condensed', 'Raleway', sans-serif;
+            }
+
+            section {
+              display: flex;
+              flex-wrap: wrap;
+              flex-flow: row wrap;
+              background-color: #fff;
+              width: 100%;
+              padding: 10px 15px;
+              border-radius: 5px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+              max-width: ${maxWidth};
+              justify-content: ${justifyContent};
+              margin: ${margin};
             }
           `}
         </style>

@@ -3,18 +3,28 @@ import { Image } from 'cloudinary-react';
 import Media from 'react-media';
 
 import Layout from '../components/Layout';
-import Content from '../components/Content';
-import { CLOUDINARY } from '../constants/constants';
+import { CLOUDINARY, CLOUDINARY_TAGS } from '../constants/constants';
 
+import { CloudinaryApi } from '../utils/api';
+
+const headerTitle = (
+  textAlign = '',
+  fontSize = '',
+  marginBottom = '20px'
+) => {
+  return { textAlign, fontSize, marginBottom };
+};
 
 const AboutContainer = ({
   publicId,
   flexDirection = '',
-  alignItems    = '',
+  alignItems = '',
   marginTop = ''
 }) => {
   return (
-    <div style={{ flexDirection, alignItems }}>
+    <div>
+      <h1 style={headerTitle()}>About The Artist</h1>
+    
       <Image
         cloudName={CLOUDINARY().CLOUDNAME}
         width={200}
@@ -46,6 +56,7 @@ const AboutContainer = ({
         {`
           div {
             display: flex;
+            flex-direction: ${flexDirection}
           }
 
           text {
@@ -64,68 +75,29 @@ const AboutContainer = ({
 
 export default class About extends Component {
   static async getInitialProps() {
-    const options = {
-      method: 'GET',
-      mode: 'cors'
-    };
-
-    const response = await fetch(
-      CLOUDINARY('profile_pic').URL,
-      options
-    );
-
-    const data = await response.json();
-    return { data };
+    const data = await CloudinaryApi().fetchImages(CLOUDINARY_TAGS.profileTag);
+    return { data }
   }
 
   render() {
-    const headerTitle = (
-      textAlign = '',
-      fontSize = '',
-      marginBottom = '20px'
-    ) => {
-      return { textAlign, fontSize, marginBottom };
-    };
-
     const { data: { resources: [{ public_id }] }, url } = this.props;
     return (
-      <div>
-        <Layout href={url.pathname}>
-          <Media query="(max-width: 575px)">
-            {matches =>
-              matches ? (
-                <Content
-                  margin={'120px auto'}
-                  maxWidth={300}
-                  justifyContent={'center'}
-                >
-                  <h1 style={headerTitle('center', '30px')}>
-                    About The Artist
-                  </h1>
-                  <AboutContainer
-                    flexDirection={'column'}
-                    alignItems={'center'}
-                    marginTop={'10px'} 
-                    publicId={public_id}
-                  />
-                </Content>
-              ) : (
-                <Content>
-                  <h1 style={headerTitle()}>About The Artist</h1>
-                  <AboutContainer publicId={public_id} />
-                </Content>
-              )}
-          </Media>
+        <Layout 
+          href={url.pathname}
+          render={({ flexDirection }) => (
+            <AboutContainer flexDirection={flexDirection} publicId={public_id} />
+          )}>
+
+            <style jsx>
+            {`
+              h1 {
+                text-transform: uppercase;
+                color: #222;
+              }
+            `}
+          </style>
         </Layout>
-        <style jsx>
-          {`
-            h1 {
-              text-transform: uppercase;
-              color: #222;
-            }
-          `}
-        </style>
-      </div>
+
     );
   }
 }

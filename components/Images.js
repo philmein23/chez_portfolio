@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import { CLOUDINARY } from '../constants/constants';
-import Modal from '../components/Modal';
 
 class Images extends Component {
   state = {
     display: false,
-    selectedImage: null
+    selectedImage: null,
+    modal: null
   };
 
-  handleModalDisplay = selectedImage => {
+  handleModalDisplay = async selectedImage => {
+    await this.loadModal();
+
     this.setState({
       selectedImage,
       display: true
     });
+  };
+
+  loadModal = async () => {
+    const {
+      default: loadedModal
+    } = await import('../components/Modal');
+
+    this.setState({ modal: loadedModal });
   };
 
   closeModal = () => {
@@ -26,14 +36,22 @@ class Images extends Component {
     };
 
     const { imageData, width } = this.props;
+
+    const Modal = this.state.modal;
+
     return (
       <div>
-        <Modal
-          width={500}
-          closeModal={this.closeModal}
-          display={this.state.display}
-          selectedImage={this.state.selectedImage}
-        />
+        {Modal ? (
+          <Modal
+            width={500}
+            closeModal={this.closeModal}
+            display={this.state.display}
+            selectedImage={this.state.selectedImage}
+          />
+        ) : (
+          <div></div>
+        )}
+
         {imageData.resources.map((image, index) => (
           <a
             style={imageLink}
